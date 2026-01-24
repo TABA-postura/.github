@@ -9,17 +9,18 @@
 
 | 순번 | 항목 |
 | :-: | :-: |
-| 1 | 팀원 소개 |
-| 2 | 서비스 개요 |
-| 3 | 서비스 소개 |
-| 4 | 기능 플로우차트 |
-| 5 | 시스템 아키텍처 |
-| 6 | UI / UX |
-| 7 | ERD |
-| 8 |  |
+| 1 | [팀원 소개](#1) |
+| 2 | [서비스 개요](#2) |
+| 3 | [서비스 소개](#3) |
+| 4 | [기능 플로우차트](#4) |
+| 5 | [시스템 아키텍처](#5) |
+| 6 | [UI / UX](#6) |
+| 7 | [ERD](#7) |
+| 8 | [수상 내역](#8) |
 
 </br>
 
+<a id="1"></a>
 ## 1️⃣ 팀원 소개
 
 | _이름_ | 강동규 | 권예진 | 김도연 | 문형주 | 임수경 |
@@ -29,6 +30,7 @@
 
 </br>
 
+<a id="2"></a>
 ## 2️⃣ 서비스 개요
 
 현대 사회에서 학생과 직장인은 컴퓨터 앞에서 보내는 시간이 폭발적으로 증가했다. 장시간의 모니터 사용은 필연적으로 **거북목 및 허리 굽힘**과 같은 잘못된 자세를 유발하며, 이는 만성적인 근골격계 질환과 집중력 저하의 주요 원인이 된다.
@@ -40,6 +42,7 @@
 
 </br>
 
+<a id="3"></a>
 ## 3️⃣ 서비스 소개
 
 ### 🎯 배경 및 문제점
@@ -81,6 +84,7 @@
 
 </br>
 
+<a id="4"></a>
 ## 4️⃣ 기능 플로우차트
 
 <img width="638" height="500" alt="image" src="https://github.com/user-attachments/assets/8ebe04b2-a317-47c3-99fe-8c4b01208a32" /></br>
@@ -88,6 +92,7 @@
 
 </br>
 
+<a id="5"></a>
 ## 5️⃣ 시스템 아키텍처
 
 <img width="638" height="353" alt="postura_systemArchitecture" src="https://github.com/user-attachments/assets/769cd495-79b4-4c20-b2dd-180b464f363c" />
@@ -95,6 +100,7 @@
 
 </br>
 
+<a id="6"></a>
 ## 6️⃣ UI / UX
 
 <img width="638" height="310" alt="image" src="https://github.com/user-attachments/assets/25beef56-32a4-4bf8-9116-2cbf24b1adeb" />
@@ -112,10 +118,26 @@
 
 </br>
 
+<a id="7"></a>
 ## 7️⃣ ERD
 
 <img width="900" height="750" alt="image" src="https://github.com/user-attachments/assets/c2049fb5-8edd-4554-bba1-7ee3d9ce93cf" />
 
 </br>
 
+<a id="8"></a>
+## 8️⃣ 수상 내역
 
+### 🥇 TABA 아카데미 10기 프로젝트 발표회
+- **수상:** 최우수상 (1등)
+- **주관:** TABA 아카데미 사업단
+- **선정:** 총 5팀 중 1팀 선정
+
+<details>
+  <summary> <b><i>상장 펼쳐보기</i></b> </summary>
+
+  <img width="300" alt="image" src="https://github.com/user-attachments/assets/ba6513c8-4952-43b0-b688-bbac99698378" />
+
+</details>
+
+<br/>
