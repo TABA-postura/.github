@@ -131,13 +131,6 @@
 ### 🥇 TABA 아카데미 10기 프로젝트 발표회
 - **수상:** 최우수상 (1등)
 - **주관:** TABA 아카데미 사업단
-- **선정:** 총 5팀 중 1팀 선정
-
-<details>
-  <summary> <b><i>상장 펼쳐보기</i></b> </summary>
-
-  <img width="300" alt="image" src="https://github.com/user-attachments/assets/ba6513c8-4952-43b0-b688-bbac99698378" />
-
-</details>
+- **선정:** 총 6팀 중 1팀 선정
 
 <br/>
