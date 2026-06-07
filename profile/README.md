@@ -26,7 +26,7 @@
 | _이름_ | 강동규 | 권예진 | 김도연 | 문형주 | 임수경 |
 |:-----:|:----:|:-----:|:----:|:----:|:----:|
 | ___역할___ | BE | AI | FE | BE | FE |
-| ___Github___ | <a href="https://github.com/yswmon"><img src="https://avatars.githubusercontent.com/u/169887881?v=4" width="64" height="64"></a> | <a href="https://github.com/yejin1029"><img src="https://avatars.githubusercontent.com/u/161132495?v=4" width="64" height="64"></a> | <a href="https://github.com/doyeon112"><img src="https://avatars.githubusercontent.com/u/165985343?v=4" width="64" height="64"></a> | <a href="https://github.com/moon4528"><img src="https://avatars.githubusercontent.com/u/166115965?v=4" width="64" height="64"></a> | <a href="https://github.com/sukyungi"><img src="https://avatars.githubusercontent.com/u/165240451?v=4" width="64" height="64"></a> |
+| ___Github___ | <a href="https://github.com/donggyu-kang"><img src="https://avatars.githubusercontent.com/u/169887881?v=4" width="64" height="64"></a> | <a href="https://github.com/yejinkw"><img src="https://avatars.githubusercontent.com/u/161132495?v=4" width="64" height="64"></a> | <a href="https://github.com/doyeon112"><img src="https://avatars.githubusercontent.com/u/165985343?v=4" width="64" height="64"></a> | <a href="https://github.com/moon4528"><img src="https://avatars.githubusercontent.com/u/166115965?v=4" width="64" height="64"></a> | <a href="https://github.com/sukyungi"><img src="https://avatars.githubusercontent.com/u/165240451?v=4" width="64" height="64"></a> |
 
 </br>
 
