@@ -16,7 +16,8 @@
 | 5 | [시스템 아키텍처](#5) |
 | 6 | [UI / UX](#6) |
 | 7 | [ERD](#7) |
-| 8 | [수상 내역](#8) |
+| 8 | [로컬 실행 방법](#8) |
+| 9 | [수상 내역](#9) |
 
 </br>
 
@@ -126,7 +127,136 @@
 </br>
 
 <a id="8"></a>
-## 8️⃣ 수상 내역
+## 8️⃣ 로컬 실행 방법
+
+3개 서비스(백엔드·AI·프론트)를 로컬에서 한 번에 실행할 수 있습니다. **소셜 로그인을 제외한 모든 기능**이 동작합니다.
+
+### 📦 사전 준비
+| 프로그램 | 비고 |
+| :--- | :--- |
+| **Docker Desktop** | 실행(켜둔) 상태. MySQL·Redis·AI를 자동으로 띄웁니다 |
+| **JDK 17** | 백엔드 빌드용 |
+| **Node.js 18+** | 프론트엔드용 |
+
+> MySQL·Redis는 **설치할 필요 없습니다.** Docker가 자동 생성합니다.
+
+### 📁 폴더 구조
+3개 레포를 아래처럼 배치합니다. (상위·백엔드·프론트 폴더 이름은 자유, **`AI` 폴더 이름만 고정**)
+```
+📁 postura/                (상위 폴더 - 이름 자유)
+├─ docker-compose.yml      ⚠️ AI 폴더와 같은 위치
+├─ AI/                     ⚠️ 폴더 이름 반드시 "AI"
+├─ Backend/                (이름 자유)
+└─ Frontend/               (이름 자유)
+```
+```bash
+# 상위 폴더에서 3개 레포 클론
+git clone https://github.com/TABA-postura/Backend.git Backend
+git clone https://github.com/TABA-postura/Frontend.git Frontend
+git clone https://github.com/TABA-postura/AI.git AI   # 폴더명 반드시 AI
+```
+
+### ⚙️ 설정 파일 (최초 1회)
+
+**1) 상위 폴더에 `docker-compose.yml` 생성**
+<details>
+<summary>docker-compose.yml 내용 펼치기</summary>
+
+```yaml
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: postura-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "postura"
+      MYSQL_DATABASE: postura
+      TZ: Asia/Seoul
+    ports:
+      - "3307:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - postura-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppostura"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: postura-redis
+    ports:
+      - "6379:6379"
+
+  ai:
+    build: ./AI
+    container_name: postura-ai
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --app-dir src
+    environment:
+      SPRING_BASE_URL: "http://host.docker.internal:8080"
+      SPRING_AI_LOG_PATH: "api/ai/log"
+      LOG_LEVEL: "INFO"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  postura-mysql-data:
+```
+</details>
+
+**2) 프론트엔드 `app/frontend/.env.development.local` 생성**
+```
+VITE_API_BASE_URL=http://localhost:8080
+VITE_AI_BASE_URL=http://localhost:8000
+```
+
+> 백엔드 로컬 설정(`application-local.properties`)은 **Backend 레포에 이미 포함**되어 있어 따로 만들 필요가 없습니다.
+
+### ▶️ 실행 (터미널 3개)
+> 순서: **Docker Desktop 켜기 → ① 인프라 → ② 백엔드 → ③ 프론트**
+
+```bash
+# ① 인프라 (MySQL + Redis + AI) — 상위 폴더에서
+docker compose up -d
+# 최초 1회는 AI 이미지 빌드에 5~10분 소요 (TensorFlow). 이후엔 수 초.
+```
+```bash
+# ② 백엔드 — Backend 폴더에서
+./gradlew bootRun --args='--spring.profiles.active=local'
+# ⚠️ --spring.profiles.active=local 꼭 붙이기
+```
+```bash
+# ③ 프론트엔드 — Frontend 폴더에서 (새 터미널)
+npm install   # 최초 1회
+npm run dev
+```
+
+### 🌐 접속
+브라우저에서 **http://localhost:3000** 접속
+1. 이메일로 회원가입 → 로그인
+2. 모니터링 시작 → 웹캠 권한 허용
+3. 실시간 자세 분석 · 피드백 · 통계 확인
+
+### ⏹️ 종료 / 초기화
+```bash
+docker compose down      # 인프라 종료 (데이터 유지)
+docker compose down -v   # 인프라 종료 + DB 완전 초기화
+```
+백엔드·프론트는 각 터미널에서 `Ctrl + C`.
+
+### 🛠️ 자주 나는 문제
+| 증상 | 해결 |
+| :--- | :--- |
+| 백엔드가 원격(AWS) DB/Redis로 붙으려 함 | `--spring.profiles.active=local` 누락 |
+| `docker compose`가 AI를 못 찾음 | AI 폴더 이름이 `AI`인지, compose와 같은 위치인지 확인 |
+| 포트 충돌(3307·8080·3000) | 해당 포트를 쓰는 다른 프로세스 종료 |
+| 소셜 로그인(구글/카카오) 안 됨 | 로컬에선 기본 비활성 → 이메일 로그인 사용 |
+
+<a id="9"></a>
+## 9️⃣ 수상 내역
 
 ### 🥇 2025 대학·기업 협력형 SW아카데미사업 (TABA 10기)
 - **수상:** 최우수상 (1등)
